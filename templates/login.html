@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A+ Result Portal</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 30px;
+            width: 350px;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-size: 14px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        button {
+            width: 100%;
+            background: #ff4d4d;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e63939;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>A+ Result Portal</h1>
+        <form id="loginForm">
+            <label for="phoneNumber">Mobile Number:</label>
+            <input type="text" id="phoneNumber" placeholder="Enter Mobile Number">
+
+            <label for="rollNumber">Roll Number:</label>
+            <input type="text" id="rollNumber" placeholder="Enter Roll Number">
+
+            <button type="button" onclick="showResult()">Check Result</button>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        // Mock student data
+        const studentsData = {
+            "1234567890": { "rollNumber": "101", "marks": "85/100" },
+            "9876543210": { "rollNumber": "102", "marks": "92" }
+        };
+
+        function showResult() {
+            const phoneNumber = document.getElementById('phoneNumber').value.trim();
+            const rollNumber = document.getElementById('rollNumber').value.trim();
+            const resultDiv = document.getElementById('result');
+
+            // Clear previous result
+            resultDiv.innerHTML = '';
+
+            // Validate credentials
+            if (studentsData[phoneNumber] && studentsData[phoneNumber].rollNumber === rollNumber) {
+                const marks = studentsData[phoneNumber].marks;
+                resultDiv.innerHTML = `Your marks: <span style="color: lightgreen">${marks}</span>`;
+            } else {
+                resultDiv.innerHTML = `<span style="color: red">Invalid credentials. Please try again.</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
